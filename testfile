@@ -10,7 +10,7 @@ pipeline {
         stage ('second stage') {
             steps {
                 echo "build image"
-                sh "docker build -t flaskapp:v1" 
+                sh "docker build -t flaskapp:v1 ." 
             }           
         }
     }
