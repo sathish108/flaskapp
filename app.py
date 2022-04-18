@@ -4,6 +4,39 @@ This module is used for  creating flask  api
 from functools import wraps
 from flask import Flask, request, jsonify, Response
 flask_jenkins_app = Flask(__name__)
+#languages=[{"name":"python"},{"name":"java"},{"name":"javascript"}]
+
+def infra(*args, **dec_kwargs):
+    global d1, d2, d3, d4, d5, d6, d7, d8
+    d1 = dec_kwargs.get('cpuLimit', "210m")
+    d2 = dec_kwargs.get('cpuRequest', "100m")
+    d3 = dec_kwargs.get('image', "gcr.io/disney-218910/flask-app:latest")
+    d4 = dec_kwargs.get('memoryLimit', "100M")
+    d5 = dec_kwargs.get('memoryRequest', "75M")
+    d6 = dec_kwargs.get('replicaCount', 1)
+    d7 = dec_kwargs.get('serviceport',8086)
+    d8 = dec_kwargs.get('servicetype', "LoadBalancer")
+
+    def inner(original_func):
+        @wraps(original_func)
+        def wrapper(*args, **kwargs):
+            # print(dec_kwargs['image'])
+            # print('Wrapped function name:',func.__name__)
+            # print('Arguments for kwargs: {}'.format(kwargs))
+            print('original func return values', original_func(*args, **kwargs))
+            res = original_func(*args, **kwargs)
+
+        return wrapper
+
+    return inner
+    
+    
+# @infra(cpuLimit='75m', cpuRequest='100m', image='gcr.io/disney-218910/flask-app:latest', memoryLimit='100M',
+#       memoryRequest='75M', replicaCount=3, serviceport=8086,
+#       servicetype='LoadBalancer')
+@infra(cpuLimit='300m', cpuRequest='100m', replicaCount=1)
+def testing():
+    pass
 
 @flask_jenkins_app.route("/health-check")
 def health_check():

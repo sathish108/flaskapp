@@ -11,12 +11,10 @@ pipeline {
                 echo "build image"
                 sh "id"
                 sh "docker build -t flaskapp:v1 ." 
-    
             } 
         }
         stage ('run container app') {
             steps {
-                sh "docker rm -f "${'docker ps -aq'}""
                 sh "docker run -it -d -p 80:5000 flaskapp:v1"
             }     
         }
