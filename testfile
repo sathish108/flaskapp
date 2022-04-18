@@ -7,7 +7,7 @@ pipeline {
 		        stash 'Source'
             }    
         }
-        stage ('pulling code from git hub') {
+        stage ('second stage') {
             steps {
                 echo "hi sathish"
             }           
