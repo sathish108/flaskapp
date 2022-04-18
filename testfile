@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+    stages {
+        stage ('first stage') {
+            echo "hello world"
+        }
+        stage ('pulling code from git hub') {
+            touch file.txt
+        }
+    }
+}
