@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('pulling code from git hub') {
             steps {
-                git credentialsId: 'github_credentials', url: 'https://github.com/sathish108/flaskapp'    
+                git branch: 'main', credentialsId: 'github_credentials', url: 'https://github.com/sathish108/flaskapp'    
 		        stash 'Source'
             }    
         }
