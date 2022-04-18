@@ -6,12 +6,18 @@ pipeline {
                 git branch: 'main', credentialsId: 'github_credentials', url: 'https://github.com/sathish108/flaskapp'    
             }    
         }
-        stage ('second stage') {
+        stage ('build docker images') {
             steps {
                 echo "build image"
                 sh "id"
                 sh "docker build -t flaskapp:v1 ." 
-            }           
+    
+            } 
+        }
+        stage ('run container app') {
+            steps {
+                sh "docker run -it -d -p 80:5000 flaskapp:v1"
+            }     
         }
     }
 }
