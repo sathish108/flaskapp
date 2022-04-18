@@ -4,14 +4,12 @@ pipeline {
         stage ('first stage') {
             steps {
                 echo "hello world"
-            }
-            
+            }    
         }
         stage ('pulling code from git hub') {
             steps {
                 touch file.txt
-            }
-            
+            }           
         }
     }
 }
