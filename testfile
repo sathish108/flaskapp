@@ -2,10 +2,16 @@ pipeline {
     agent any
     stages {
         stage ('first stage') {
-            echo "hello world"
+            steps {
+                echo "hello world"
+            }
+            
         }
         stage ('pulling code from git hub') {
-            touch file.txt
+            steps {
+                touch file.txt
+            }
+            
         }
     }
 }
