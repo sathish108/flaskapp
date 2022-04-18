@@ -1,9 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage ('first stage') {
+        stage ('pulling code from git hub') {
             steps {
-                echo "hello world"
+                git credentialsId: 'github-server-credentials', url: 'https://github.com/sathish108/flaskapp'    
+		        stash 'Source'
             }    
         }
         stage ('pulling code from git hub') {
