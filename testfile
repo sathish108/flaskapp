@@ -4,12 +4,12 @@ pipeline {
         stage ('pulling code from git hub') {
             steps {
                 git branch: 'main', credentialsId: 'github_credentials', url: 'https://github.com/sathish108/flaskapp'    
-		        stash 'Source'
             }    
         }
         stage ('second stage') {
             steps {
                 echo "build image"
+                sh "id"
                 sh "docker build -t flaskapp:v1 ." 
             }           
         }
