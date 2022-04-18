@@ -88,4 +88,4 @@ This method is used  to perform DELETE  operation
             return jsonify({"languages":languages})
 
 if __name__ == '__main__':
-    flask_jenkins_app.run(host="0.0.0.0", debug=True, port=5000)
+    flask_jenkins_app.run(host="0.0.0.0", debug=True, port=8086)
