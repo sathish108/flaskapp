@@ -16,7 +16,7 @@ pipeline {
         }
         stage ('run container app') {
             steps {
-                sh "docker rm -f "${docker ps -aq}""
+                sh "docker rm -f "${'docker ps -aq'}""
                 sh "docker run -it -d -p 80:5000 flaskapp:v1"
             }     
         }
