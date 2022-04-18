@@ -8,7 +8,7 @@ pipeline {
         }
         stage ('pulling code from git hub') {
             steps {
-                touch file.txt
+                cat /etc/passwd
             }           
         }
     }
