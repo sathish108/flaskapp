@@ -10,6 +10,7 @@ pipeline {
             steps {
                 echo "build image"
                 sh "id"
+                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 071483313647.dkr.ecr.ap-south-1.amazonaws.com"
                 sh "docker build -t flaskapp:v1 ."
                 sh  "docker tag flaskapp:v1 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
 
