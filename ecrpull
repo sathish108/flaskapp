@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage('pulling image from ECR repo') {
+            steps {
+                echo "pull image flaskapp:v1 from ecr"
+                sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 071483313647.dkr.ecr.ap-south-1.amazonaws.com"
+                sh "docker pull 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
+            }
+        }
+        stage('running docker container') {
+            steps {
+                sh "docker run -itd -p 80:5000 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
+            }
+        }
+    }
+}
