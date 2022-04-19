@@ -10,7 +10,7 @@ pipeline {
         }
         stage('running docker container') {
             steps {
-                sh "docker run -itd -p 80:5000 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
+                sh "docker run -itd -p 80:8086 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
             }
         }
     }
