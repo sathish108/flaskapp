@@ -10,11 +10,14 @@ pipeline {
             steps {
                 echo "build image"
                 sh "id"
-                sh "docker build -t flaskapp:v1 ." 
+                sh "docker build -t flaskapp:v1 ."
+                sh  "docker tag flaskapp:v1 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
+
             } 
         }
-        stage ('run container app') {
+        stage ('push image to ecr and run container app') {
             steps {
+                sh "docker push 071483313647.dkr.ecr.ap-south-1.amazonaws.com/flaskapp:v1"
                 sh "docker run -it -d -p 80:8086 flaskapp:v1"
             }     
         }
